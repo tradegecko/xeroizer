@@ -33,9 +33,18 @@ module Xeroizer
       def line_amount(summary_only = false)
         return attributes[:line_amount] if summary_only || @line_amount_set
         
-        BigDecimal((quantity * unit_amount).to_s).round(2) if quantity && unit_amount
+        BigDecimal((quantity * unit_amount * discount_multiplier).to_s).round(2) if quantity && unit_amount
       end
       
+
+    private
+
+      def discount_multiplier
+        return 1 if discount_rate.nil?
+
+        (100.0 - discount_rate) / 100.0
+      end
+
     end
     
   end
