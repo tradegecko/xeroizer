@@ -90,7 +90,7 @@ module Xeroizer
         attempts = 0
 
         request_info = RequestInfo.new(url, headers, params, body)
-        before_request.call(request_info) if before_request
+        before_request.call(request_info, method) if before_request
 
         begin
           attempts += 1
