@@ -105,8 +105,8 @@ module Xeroizer
         end
 
         def save
-          binding.pry
-          puts "#{new_record?}"
+          log  "SAVE CALLED YO"
+          log "#{new_record?}"
           return false unless valid?
           if new_record?
             create
